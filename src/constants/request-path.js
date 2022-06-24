@@ -1,5 +1,5 @@
 class RequestPath {
-  static testPath = '/';
+  static books = '/books';
 }
 
 module.exports = RequestPath;

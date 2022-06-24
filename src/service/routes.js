@@ -4,9 +4,9 @@ const RequestPath = require('../constants/request-path');
 
 class Routes {
   static endpoint = [{
-    method: RequestMethod.get,
-    path: RequestPath.testPath,
-    handler: Handler.testHandler,
+    method: RequestMethod.post,
+    path: RequestPath.books,
+    handler: Handler.addBookHandler,
   }];
 }
 
