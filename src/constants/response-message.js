@@ -6,6 +6,8 @@ class ResponseMessage {
   static addingBookSuccessfully = 'Buku berhasil ditambahkan';
 
   static addingBookUnsuccessfully = 'Buku gagal ditambahkan';
+
+  static bookNotFound = 'Buku tidak ditemukan';
 }
 
 module.exports = ResponseMessage;

@@ -13,7 +13,13 @@ class Routes {
       method: RequestMethod.get,
       path: RequestPath.books,
       handler: Handler.getAllBookHandler,
-    }];
+    },
+    {
+      method: RequestMethod.get,
+      path: RequestPath.book,
+      handler: Handler.getBookByIdHandler,
+    },
+  ];
 }
 
 module.exports = Routes;

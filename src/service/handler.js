@@ -34,7 +34,7 @@ class Handler {
     const id = nanoid(16);
     const finished = readPage === pageCount;
     const insertedAt = new Date().toISOString();
-    const updateAt = insertedAt;
+    const updatedAt = insertedAt;
 
     const newBook = {
       id,
@@ -48,7 +48,7 @@ class Handler {
       finished,
       reading,
       insertedAt,
-      updateAt,
+      updatedAt,
     };
 
     books.push(newBook);
@@ -105,6 +105,31 @@ class Handler {
         })),
       },
     });
+
+    return response;
+  };
+
+  static getBookByIdHandler = (request, h) => {
+    const { id } = request.params;
+    const book = books.filter((b) => b.id === id)[0];
+    let response = null;
+
+    if (book !== undefined) {
+      response = h.response({
+        status: ResponseStatus.success,
+        data: {
+          book,
+        },
+      });
+
+      return response;
+    }
+
+    response = h.response({
+      status: ResponseStatus.fail,
+      message: ResponseMessage.bookNotFound,
+    })
+      .code(404);
 
     return response;
   };
