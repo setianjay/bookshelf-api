@@ -1,4 +1,5 @@
 const { nanoid } = require('nanoid');
+const _ = require('lodash');
 const books = require('../model/books');
 const ResponseStatus = require('../constants/response-status');
 const ResponseMessage = require('../constants/response-message');
@@ -86,12 +87,12 @@ class Handler {
     }
 
     if (reading !== undefined) {
-      const isReading = reading === 1;
+      const isReading = !!Number(reading);
       filteredBooks = books.filter((book) => book.reading === isReading);
     }
 
     if (finished !== undefined) {
-      const isFinished = finished === 1;
+      const isFinished = !!Number(finished);
       filteredBooks = books.filter((book) => book.finished === isFinished);
     }
 
@@ -194,6 +195,30 @@ class Handler {
       message: ResponseMessage.updateBookWhenIdNotFound,
     })
       .code(404);
+    return response;
+  };
+
+  static deleteBookByIdHandler = (request, h) => {
+    const { id } = request.params;
+    const bookDeleted = _.remove(books, (book) => book.id === id).length > 0;
+
+    let response = null;
+
+    if (bookDeleted) {
+      response = h.response({
+        status: ResponseStatus.success,
+        message: ResponseMessage.deleteBookSuccessfully,
+      });
+
+      return response;
+    }
+
+    response = h.response({
+      status: ResponseStatus.fail,
+      message: ResponseMessage.deleteBookUnsuccessfully,
+    })
+      .code(404);
+
     return response;
   };
 }

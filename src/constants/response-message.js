@@ -9,6 +9,10 @@ class ResponseMessage {
 
   static bookNotFound = 'Buku tidak ditemukan';
 
+  static deleteBookUnsuccessfully = 'Buku gagal dihapus. Id tidak ditemukan';
+
+  static deleteBookSuccessfully = 'Buku berhasil dihapus';
+
   static updateBookSuccessfully = 'Buku berhasil diperbarui';
 
   static updateBookWhenIdNotFound = 'Gagal memperbarui buku. Id tidak ditemukan';

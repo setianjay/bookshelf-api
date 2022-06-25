@@ -24,6 +24,11 @@ class Routes {
       path: RequestPath.book,
       handler: Handler.updateBookByIdHandler,
     },
+    {
+      method: RequestMethod.delete,
+      path: RequestPath.book,
+      handler: Handler.deleteBookByIdHandler,
+    },
   ];
 }
 
