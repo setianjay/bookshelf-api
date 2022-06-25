@@ -133,6 +133,69 @@ class Handler {
 
     return response;
   };
+
+  static updateBookByIdHandler = (request, h) => {
+    const { id } = request.params;
+    const {
+      name, year, author, summary, publisher, pageCount, readPage, reading,
+    } = request.payload;
+    const index = books.findIndex((book) => book.id === id);
+
+    let response = null;
+
+    if (index !== -1) {
+      if (name === undefined) {
+        response = h.response({
+          status: ResponseStatus.fail,
+          message: ResponseMessage.updateBookWithoutNameBody,
+        })
+          .code(400);
+
+        return response;
+      }
+
+      if (readPage > pageCount) {
+        response = h.response({
+          status: ResponseStatus.fail,
+          message: ResponseMessage.updateBookWithReadPageGraterThanPageCount,
+        })
+          .code(400);
+
+        return response;
+      }
+
+      const updatedAt = new Date().toISOString();
+      const finished = readPage === pageCount;
+
+      books[index] = {
+        ...books[index],
+        name,
+        year,
+        author,
+        summary,
+        publisher,
+        pageCount,
+        readPage,
+        finished,
+        reading,
+        updatedAt,
+      };
+
+      response = h.response({
+        status: ResponseStatus.success,
+        message: ResponseMessage.updateBookSuccessfully,
+      });
+
+      return response;
+    }
+
+    response = h.response({
+      status: ResponseStatus.fail,
+      message: ResponseMessage.updateBookWhenIdNotFound,
+    })
+      .code(404);
+    return response;
+  };
 }
 
 module.exports = Handler;

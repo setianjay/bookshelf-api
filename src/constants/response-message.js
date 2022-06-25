@@ -1,13 +1,21 @@
 class ResponseMessage {
+  static addingBookUnsuccessfully = 'Buku gagal ditambahkan';
+
+  static addingBookSuccessfully = 'Buku berhasil ditambahkan';
+
   static addingBookWithoutNameBody = 'Gagal menambahkan buku. Mohon isi nama buku';
 
   static addingBookWithReadPageGraterThanPageCount = 'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount';
 
-  static addingBookSuccessfully = 'Buku berhasil ditambahkan';
-
-  static addingBookUnsuccessfully = 'Buku gagal ditambahkan';
-
   static bookNotFound = 'Buku tidak ditemukan';
+
+  static updateBookSuccessfully = 'Buku berhasil diperbarui';
+
+  static updateBookWhenIdNotFound = 'Gagal memperbarui buku. Id tidak ditemukan';
+
+  static updateBookWithoutNameBody = 'Gagal memperbarui buku. Mohon isi nama buku';
+
+  static updateBookWithReadPageGraterThanPageCount = 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount';
 }
 
 module.exports = ResponseMessage;

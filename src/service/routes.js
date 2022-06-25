@@ -19,6 +19,11 @@ class Routes {
       path: RequestPath.book,
       handler: Handler.getBookByIdHandler,
     },
+    {
+      method: RequestMethod.put,
+      path: RequestPath.book,
+      handler: Handler.updateBookByIdHandler,
+    },
   ];
 }
 
